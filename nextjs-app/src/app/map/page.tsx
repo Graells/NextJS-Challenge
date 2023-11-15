@@ -18,7 +18,7 @@ export default function MapPage() {
       <Search onSelectAddress={handleSearch} />
       <Mapa address={recentSearch} />
       <div>
-        <h2>Past Searches</h2>
+        <h2>Búsquedas</h2>
         <ul>
           {searches.map((search, index) => (
             <li key={index}>{search}</li>

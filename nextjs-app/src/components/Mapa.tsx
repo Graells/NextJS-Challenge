@@ -2,12 +2,14 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from '@/services/GoogleMapsLoader';
+import { useSearch } from '@/contexts/SearchContext';
 
 interface MapProps {
   address: string;
 }
 
 const Mapa: React.FC<MapProps> = ({ address }) => {
+  const { removeSearch } = useSearch();
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,15 +26,21 @@ const Mapa: React.FC<MapProps> = ({ address }) => {
         const geocoder = new Geocoder();
         geocoder.geocode({ address: address }, (results, status) => {
           if (status === 'OK' && results && results[0]?.geometry?.location) {
-            console.log(results);
+            console.log('results', results);
+            console.log('status', status);
             const map = new google.maps.Map(mapRef.current!, {
               center: results[0].geometry.location,
-              zoom: 11,
+              zoom: 14,
             });
             new google.maps.Marker({
               map: map,
               position: results[0].geometry.location,
             });
+          } else if (status === 'ZERO_RESULTS') {
+            removeSearch(address);
+            alert(
+              `Geocode was not successful for the following reason: ${status}`,
+            );
           } else {
             console.error(
               `Geocode was not successful for the following reason: ${status}`,
@@ -44,7 +52,7 @@ const Mapa: React.FC<MapProps> = ({ address }) => {
       }
     };
     initializeMap();
-  }, [address]);
+  }, [address, removeSearch]);
 
   return <div style={{ height: '400px' }} ref={mapRef} />;
 };

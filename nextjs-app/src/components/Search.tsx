@@ -31,6 +31,7 @@ export default function Search({ onSelectAddress }: SearchProps) {
           onSelectAddress(place.formatted_address);
           if (inputRef.current) {
             inputRef.current.value = ''; // Reset input
+            inputRef.current.blur(); // Remove focus
           }
         }
       });
@@ -38,19 +39,27 @@ export default function Search({ onSelectAddress }: SearchProps) {
     initializeAutocomplete();
   }, [onSelectAddress]);
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && inputRef.current) {
-      const searchQuery = inputRef.current.value;
+  const handleSearch = () => {
+    if (inputRef.current && inputRef.current.value.trim() !== '') {
+      const searchQuery = inputRef.current.value.trim();
       onSelectAddress(searchQuery);
       inputRef.current.value = ''; // Reset input
+      inputRef.current.blur(); // Remove focus
+    } else if (inputRef.current) {
+      inputRef.current.value = ''; // Reset input
+      inputRef.current?.focus();
+      alert('Please enter a search query.');
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
     }
   };
 
   return (
     <div className="relative flex flex-1 flex-shrink-0">
-      <label htmlFor="search" className="sr-only">
-        Search
-      </label>
       <input
         ref={inputRef}
         id="search"
@@ -58,8 +67,15 @@ export default function Search({ onSelectAddress }: SearchProps) {
         placeholder="Address"
         required
         onKeyDown={handleKeyPress}
+        aria-label="Search address"
       />
-      {/* <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" /> */}
+      <button
+        onClick={handleSearch}
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        {/* <MagnifyingGlassIcon className="h-[18px] w-[18px] text-gray-500 hover:text-gray-900" /> */}
+        Search
+      </button>
     </div>
   );
 }
