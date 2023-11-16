@@ -5,11 +5,13 @@ import { createContext, useContext, useEffect, useState } from 'react';
 interface SearchContextProps {
   searches: string[];
   addSearch: (searchQuery: string) => void;
+  removeSearch: (searchQuery: string) => void;
 }
 
 const SearchContext = createContext<SearchContextProps>({
   searches: [],
   addSearch: () => {},
+  removeSearch: () => {},
 });
 
 export const useSearch = () => useContext(SearchContext);
@@ -29,9 +31,14 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
     setSearches(updatedSearches);
     localStorage.setItem('searches', JSON.stringify(updatedSearches));
   };
+  const removeSearch = (searchQuery: string) => {
+    const updatedSearches = searches.filter((search) => search !== searchQuery);
+    setSearches(updatedSearches);
+    localStorage.setItem('searches', JSON.stringify(updatedSearches));
+  };
 
   return (
-    <SearchContext.Provider value={{ searches, addSearch }}>
+    <SearchContext.Provider value={{ searches, addSearch, removeSearch }}>
       {children}
     </SearchContext.Provider>
   );

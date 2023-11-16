@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'BrickBro challenge',
   description: 'Geolocation with Google Maps API',
+  icons: {
+    icon: '/iconBB.png',
+  },
 };
 
 export default function RootLayout({
