@@ -54,7 +54,7 @@ const Mapa: React.FC<MapProps> = ({ address }) => {
     initializeMap();
   }, [address, removeSearch]);
 
-  return <div style={{ height: '400px' }} ref={mapRef} />;
+  return <div className="h-96 mt-6 mb-6 border-4 border-black" ref={mapRef} />;
 };
 
 export default Mapa;

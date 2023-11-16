@@ -1,5 +1,3 @@
-// import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-
 'use client';
 
 import loadGoogleMapsApi from '@/services/GoogleMapsLoader';
@@ -59,21 +57,20 @@ export default function Search({ onSelectAddress }: SearchProps) {
   };
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0">
+    <div className="flex w-full space-x-5 mb-8">
       <input
         ref={inputRef}
         id="search"
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        placeholder="Address"
+        className="w-full h-10 p-1 bg-gray-200 hover:bg-gray-300 rounded-md border border-gray-200 text-sm outline-2 placeholder:text-gray-500 placeholder: text-center"
+        placeholder="🔍 Address"
         required
         onKeyDown={handleKeyPress}
         aria-label="Search address"
       />
       <button
         onClick={handleSearch}
-        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+        className="rounded-md bg-gray-200 w-auto h-10 px-6 py-2 text-gray hover:bg-gray-300"
       >
-        {/* <MagnifyingGlassIcon className="h-[18px] w-[18px] text-gray-500 hover:text-gray-900" /> */}
         Search
       </button>
     </div>

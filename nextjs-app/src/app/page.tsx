@@ -2,6 +2,7 @@
 
 import Search from '@/components/Search';
 import { useSearch } from '@/contexts/SearchContext';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
@@ -14,9 +15,15 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div>Brickbro logo home</div>
+    <div className="flex items-center justify-center flex-col h-screen ml-32 mr-32">
+      <Image
+        src="/brickbroLogo.png"
+        alt="brickbroLogo"
+        width={300}
+        height={77.73}
+        className="mb-16"
+      ></Image>
       <Search onSelectAddress={handleSearch} />
-    </>
+    </div>
   );
 }
