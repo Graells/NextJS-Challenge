@@ -23,5 +23,7 @@ npm run dev
 
 ### Comments:
 
+Deployed using Vercel, live demo at: https://nextjs-challenge-beta.vercel.app/
+
 - Testing to be done.
 - Improve mobile view.
