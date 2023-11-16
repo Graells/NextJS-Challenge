@@ -15,13 +15,14 @@ export default function Home() {
   };
 
   return (
-    <div className="flex items-center justify-center flex-col h-screen ml-32 mr-32">
+    <div className="flex items-center justify-center flex-col h-screen max-w-xl mx-auto">
       <Image
         src="/brickbroLogo.png"
         alt="brickbroLogo"
         width={300}
         height={77.73}
         className="mb-16"
+        priority
       ></Image>
       <Search onSelectAddress={handleSearch} />
     </div>
