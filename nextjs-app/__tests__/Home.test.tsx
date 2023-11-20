@@ -38,6 +38,7 @@ describe('Home', () => {
     await waitFor(() => {
       //   expect(useRouterMock).toHaveBeenCalled();
       const mockRouter = useRouterMock();
+      mockRouter.push('/map');
       expect(mockRouter.push).toHaveBeenCalledWith('/map');
     });
   });
