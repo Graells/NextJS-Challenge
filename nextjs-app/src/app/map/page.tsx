@@ -15,7 +15,7 @@ export default function MapPage() {
   const handleSearch = (searchQuery: string) => {
     addSearch(searchQuery);
     setSelectedAddress(searchQuery);
-    console.log('searchesToContext', searches);
+    // console.log('searchesToContext', searches);
   };
   const handleSelectAddress = (address: string) => {
     setSelectedAddress(address);
