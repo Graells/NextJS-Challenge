@@ -27,3 +27,17 @@ Deployed using Vercel, live demo at: https://nextjs-challenge-beta.vercel.app/
 
 - Testing to be done.
 - Improve mobile view.
+
+
+### Testing:
+
+To test unit testing with Jest:
+
+```
+npm run test
+```
+
+To test e2e with Cypress:
+```
+npx cypress open
+```
