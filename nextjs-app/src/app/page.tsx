@@ -12,6 +12,7 @@ export default function Home() {
   const handleSearch = (searchQuery: string) => {
     addSearch(searchQuery);
     router.push('/map');
+    // console.log('ROUTER:', router);
   };
 
   return (
